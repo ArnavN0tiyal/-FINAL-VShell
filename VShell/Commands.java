@@ -84,9 +84,10 @@ public class Commands {
             proc = run.exec(new String[] { "cmd", "/C", "start", "powershell" });
         } else if (cmd.endsWith("powershell ise")) {
             proc = run.exec(new String[] { "cmd", "/C", "powershell ise" });
+        } else  if (cmd.endsWith("calculator")) {
+            proc = run.exec(new String[] { "cmd", "/C", "start", "calc"});
         } else {
-            System.out.println(
-                    "ERROR! Program not recognized, use [edge, cmd, code, arc, cursor, vi, vim, emacs, nano, powershell, powershell ise]");
+            System.out.println("ERROR! Program not recognized, use [edge, cmd, code, arc, cursor, vi, vim, emacs, nano, powershell, powershell ise, calculator]");
         }
     }
 
