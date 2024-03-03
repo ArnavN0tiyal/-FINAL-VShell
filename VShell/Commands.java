@@ -39,9 +39,9 @@ public class Commands {
         String processed = cmd.replace("eval", "").trim();
         String[] tokens = processed.split("\\s");
         try {
-            int num1 = Integer.parseInt(tokens[0]);
+            double num1 = Double.parseDouble(tokens[0]);
             String op = tokens[1];
-            int num2 = Integer.parseInt(tokens[2]);
+            double num2 = Double.parseDouble(tokens[2]);
             switch (op) {
                 case "+":
                     System.out.println(num1 + num2);
