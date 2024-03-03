@@ -22,12 +22,12 @@ public class Commands {
     }
 
     public static void shellversion() {
-        System.out.println("Version: 1.0\nRelease: 24/3/2");
+        System.out.println("Version: 1.1\nRelease: 24/3/3");
     }
 
     public static void print() {
-        String processed = cmd.replace("print", "");
-        System.out.println(processed.trim());
+        String processed = cmd.replace("print", "").trim();
+        System.out.println(processed);
     }
 
     public static void time() {
@@ -146,6 +146,7 @@ public class Commands {
             System.out.println("ERROR, Colour not recognized, use [reset, black, red, orange, blue, green]");
         }
     }
+    
 
     public static void ascii() throws IOException {
         char valueinput = cmd.charAt(6);
