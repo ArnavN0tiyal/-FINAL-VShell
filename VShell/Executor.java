@@ -6,15 +6,15 @@ public class Executor extends Commands {
     public static void main(String[] args) throws IOException {
         do {
             System.out.print("[shell]$ ");
-            cmd = sc.nextLine();
-            executeCmd(cmd);
+            usercmd = sc.nextLine();
+            executeCmd(usercmd);
         } while (exit != 0);
     }
 
     private static void executeCmd(String cmd) throws IOException {
         if (cmd.startsWith("print")) {
             print();
-        } else if (cmd.startsWith("run")) {
+        } else if (usercmd.startsWith("run")) {
             run();
         } else if (cmd.startsWith("colour")) {
             colour();
@@ -24,6 +24,10 @@ public class Executor extends Commands {
             shutdown();
         } else if (cmd.startsWith("eval")) {
             eval();
+        } else if (cmd.startsWith("cmd -c")) {
+            commandprompt();
+        } else if (usercmd.startsWith("cmd -p")) {
+            powershell();
         } else {
             switch (cmd) {
                 case "dirfiles":
