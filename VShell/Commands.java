@@ -36,7 +36,7 @@ public class Commands {
     }
 
     public static void eval() {
-        String processed = cmd.replace("eval", "").replaceAll("", " ").trim();
+        String processed = cmd.replace("eval", "").trim();
         String[] tokens = processed.split("\\s");
         try {
             double num1 = Double.parseDouble(tokens[0]);
@@ -57,7 +57,7 @@ public class Commands {
                     break;
             }
         } catch (Throwable error) {
-            System.err.println("ERROR! Usable operators are - [+, -, *, /]");
+            System.err.println("ERROR! Write statements like - [2 + 2] and usable operators are - [+, -, *, /]");
         }
     }
 
