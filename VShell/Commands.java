@@ -32,7 +32,7 @@ public class Commands {
 
     public static void time() {
         LocalTime time = LocalTime.now();
-        System.out.println("The current time is: " + time + "\n");
+        System.out.println("The current time is: " + time);
     }
 
     public static void eval() {
