@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Executor extends Commands {
     public static void main(String[] args) throws IOException {
         do {
-            System.out.print("[shell]$ ");
+            System.out.print("[" + name + "]$ ");
             usercmd = sc.nextLine();
             executeCmd(usercmd);
         } while (exit != 0);
@@ -26,8 +26,10 @@ public class Executor extends Commands {
             eval();
         } else if (cmd.startsWith("cmd -c")) {
             commandprompt();
-        } else if (usercmd.startsWith("cmd -p")) {
+        } else if (cmd.startsWith("cmd -p")) {
             powershell();
+        } else if (cmd.startsWith("rename")) {
+            rename();
         } else {
             switch (cmd) {
                 case "dirfiles":
