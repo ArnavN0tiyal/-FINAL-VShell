@@ -18,6 +18,12 @@ public class Commands {
     static Process proc;
     static int exit = 1;
     static final Scanner sc = new Scanner(System.in);
+    static String name = "shell";
+    
+    public static void rename() throws IOException {
+        String[] tokens = usercmd.split("\\s");
+        name = tokens[1];
+    }
 
     public static void commandprompt() {
         try {
@@ -56,11 +62,12 @@ public class Commands {
     }
 
     public static void help() {
-        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Commands in this \"shell\" are - print, time, eval, run, ascii, colour, shutdown and exit.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\nSecond is time, which *obviously* shows the time.\nThird is eval, which evalutes statements like - [eval 2 + 2] Output - 4.\nFourth is run, which runs programs like - [run cmd].\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\nSeventh is colour, which changes the text colour like - [colour red].\nEighth is clear, which clears the console.\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\nTenth is shver, which shows the version of the VShell.\nEleventh is cmd, it has two types - [cmd -c] and - [cmd -p]. First one runs command prompt commands and second one runs powershll commands.");
+        System.out.println(
+                "About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Commands in this \"shell\" are - print, time, eval, run, ascii, colour, shutdown and exit.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\nSecond is time, which *obviously* shows the time.\nThird is eval, which evalutes statements like - [eval 2 + 2] Output - 4.\nFourth is run, which runs programs like - [run cmd].\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\nSeventh is colour, which changes the text colour like - [colour red].\nEighth is clear, which clears the console.\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\nTenth is shver, which shows the version of the VShell.\nEleventh is cmd, it has two types - [cmd -c] and - [cmd -p]. First one runs command prompt commands and second one runs powershll commands.");
     }
 
     public static void shellversion() {
-        System.out.println("Version: 1.2\nRelease: 24/3/5");
+        System.out.println("Version: 1.2.1\nRelease: 24/3/6");
     }
 
     public static void print() {
@@ -117,7 +124,7 @@ public class Commands {
         } else if (usercmd.endsWith("emacs")) {
             proc = run.exec(new String[] { "cmd", "/C", "start", "emacs" });
         } else if (usercmd.endsWith("nano")) {
-            proc = run.exec(new String[] { "cmde", "/C", "start", "nano" });
+            proc = run.exec(new String[] { "cmd", "/C", "start", "nano" });
         } else if (usercmd.endsWith("powershell")) {
             proc = run.exec(new String[] { "cmd", "/C", "start", "powershell" });
         } else if (usercmd.endsWith("powershell ise")) {
