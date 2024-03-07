@@ -19,7 +19,15 @@ public class Commands {
     static int exit = 1;
     static final Scanner sc = new Scanner(System.in);
     static String name = "shell";
-    
+
+    public static void getInfo() {
+        if (usercmd.endsWith("os")) {
+            System.out.println("Os: " + System.getProperty("os.name") + "\n" + "Os version: " + System.getProperty("os.version") + "\n" + "Os architecture: " + System.getProperty("os.arch"));
+        } else if (usercmd.endsWith("java")) {
+            System.out.println("Java installation directory: " + System.getProperty("java.home") + "\n" + "JVM version: " + System.getProperty("java.runtime.version") + "\n" + "JVM implementation name: " + System.getProperty("java.vm.name") + "\n" + "Java compiler: " + System.getProperty("java.compiler"));
+        }
+    }
+
     public static void rename() throws IOException {
         String[] tokens = usercmd.split("\\s");
         name = tokens[1];
@@ -62,8 +70,7 @@ public class Commands {
     }
 
     public static void help() {
-        System.out.println(
-                "About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Commands in this \"shell\" are - print, time, eval, run, ascii, colour, shutdown and exit.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\nSecond is time, which *obviously* shows the time.\nThird is eval, which evalutes statements like - [eval 2 + 2] Output - 4.\nFourth is run, which runs programs like - [run cmd].\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\nSeventh is colour, which changes the text colour like - [colour red].\nEighth is clear, which clears the console.\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\nTenth is shver, which shows the version of the VShell.\nEleventh is cmd, it has two types - [cmd -c] and - [cmd -p]. First one runs command prompt commands and second one runs powershll commands.");
+        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Commands in this \"shell\" are - print, time, eval, run, ascii, colour, shutdown and exit.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\nSecond is time, which *obviously* shows the time.\nThird is eval, which evalutes statements like - [eval 2 + 2] Output - 4.\nFourth is run, which runs programs like - [run cmd].\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\nSeventh is colour, which changes the text colour like - [colour red].\nEighth is clear, which clears the console.\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\nTenth is shver, which shows the version of the VShell.\nEleventh is cmd, it has two types - [cmd -c] and - [cmd -p]. First one runs command prompt commands and second one runs powershll commands.\nTwelfth is rename, which renames your shell username like - [rename user].\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].");
     }
 
     public static void shellversion() {
@@ -101,7 +108,7 @@ public class Commands {
                     System.out.println(num1 / num2);
                     break;
             }
-        } catch (Throwable error) {
+        } catch (Exception e) {
             System.err.println("ERROR! Write statements like - [2 + 2] and usable operators are - [+, -, *, /]");
         }
     }
