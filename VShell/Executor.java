@@ -30,6 +30,8 @@ public class Executor extends Commands {
             powershell();
         } else if (cmd.startsWith("rename")) {
             rename();
+        } else if (cmd.startsWith("getInfo")) {
+            getInfo();
         } else {
             switch (cmd) {
                 case "dirfiles":
