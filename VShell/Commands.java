@@ -74,7 +74,7 @@ public class Commands {
     }
 
     public static void shellversion() {
-        System.out.println("Version: 1.2.1\nRelease: 24/3/6");
+        System.out.println("Version: 1.2.2\nRelease Date: 24/3/7");
     }
 
     public static void print() {
