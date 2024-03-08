@@ -23,17 +23,25 @@ public class Executor extends Commands {
         } else if (cmd.startsWith("shutdown")) {
             shutdown();
         } else if (cmd.startsWith("eval")) {
-            eval();
-        } else if (cmd.startsWith("cmd -c")) {
-            commandprompt();
-        } else if (cmd.startsWith("cmd -p")) {
-            powershell();
+            evalType();
+        } else if (cmd.startsWith("cmd")) {
+            shellType();
         } else if (cmd.startsWith("rename")) {
             rename();
         } else if (cmd.startsWith("getInfo")) {
             getInfo();
+        } else if (cmd.startsWith("crDir")) {
+            createDir();
+        } else if (cmd.startsWith("rmDir")) {
+            removeDir();
         } else {
             switch (cmd) {
+                case "date":
+                    date();
+                    break;
+                case "dateTime":
+                    dateTime();
+                    break;
                 case "dirfiles":
                     dirfiles();
                     break;
@@ -55,7 +63,7 @@ public class Executor extends Commands {
                     break;
                 default:
                     if (!cmd.isEmpty()) {
-                        System.out.println("Unknown command");
+                        System.err.println("Unknown command");
                     }
                     break;
             }
