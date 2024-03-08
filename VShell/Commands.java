@@ -256,7 +256,7 @@ public class Commands {
                 Evaluation.evalScientific();
                 break;
             case "-t":
-                Evaluation.evalTrignometric();
+                Evaluation.evalTrigonometric();
                 break;
             default:
                 System.out.println("ERROR! Use lables like - [-b, -s, -t, -te]");
