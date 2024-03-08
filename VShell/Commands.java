@@ -44,7 +44,7 @@ public class Commands {
                     System.out.println(num1 / num2);
                     break;
                 default:
-                    System.err.println("ERROR! Use label -b for basic statements, -s for scientific and -t for trigonometric. Write statements for basic statements - [eval -b 2 + 2], for scientific - [eval -s exp 2] and for trignometric - [eval -t cos 2]");
+                    System.err.println("ERROR! Use label -b for basic statements, -s for scientific and -t for trigonometric. Write statements for basic statements - [eval -b 2 + 2], for scientific - [eval -s exp 2] and for trigonometric - [eval -t cos 2]");
                     break;
             }
         }
@@ -97,7 +97,7 @@ public class Commands {
             }
         }
 
-        private static void evalTrigonometric() {
+        private static void evaltrigonometric() {
             String processed = usercmd.replace("eval -t", "").trim();
             String[] tokens = processed.split("\\s");
             Double num1 = Double.parseDouble(tokens[1]);
@@ -216,11 +216,11 @@ public class Commands {
     }
 
     public static void help() {
-        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3, release date is 3/8/24 and total number of usable commands are 17. Commands in this \"shell\" are - print, time, date, dateTime, eval, run, ascii, colour, shutdown, clear, cmd, rename, getInfo, crDir, rmDir.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t tan 2] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\n\nTenth is shver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is  date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.");
+        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3.1, release date is 3/8/24 and total number of usable commands are 17. Commands in this \"shell\" are - print, time, date, dateTime, eval, run, ascii, colour, shutdown, clear, cmd, rename, getInfo, crDir, rmDir.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t sin 24] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\n\nTenth is shver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is  date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.");
     }
 
     public static void shellversion() {
-        System.out.println("Version: 1.3\nRelease: 3/8/24");
+        System.out.println("Version: 1.3.1\nRelease: 3/8/24");
     }
 
     public static void print() {
@@ -242,7 +242,7 @@ public class Commands {
 
     public static void dateTime() {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("mm-dd-yy HH:mm:ss");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
         System.out.println("The current date and time is: " + dateTime.format(dateTimeFormatter));
     }
 
@@ -256,10 +256,10 @@ public class Commands {
                 Evaluation.evalScientific();
                 break;
             case "-t":
-                Evaluation.evalTrigonometric();
+                Evaluation.evaltrigonometric();
                 break;
             default:
-                System.out.println("ERROR! Use lables like - [-b, -s, -t, -te]");
+                System.out.println("ERROR! Use lables like - [-b, -s, -t]");
                 break;
         }
     }
@@ -359,10 +359,11 @@ public class Commands {
 
     public static void ascii() throws IOException {
         char valueinput = usercmd.charAt(6);
-        int asciivalue = valueinput;
-        System.out.println(asciivalue);
-        if (usercmd.length() > 1) {
+        if (usercmd.length() > 7) {
             System.err.println("ERROR! Can only read one ascii char");
+        } else {
+            int asciivalue = valueinput;
+            System.out.println(asciivalue);
         }
     }
 }
