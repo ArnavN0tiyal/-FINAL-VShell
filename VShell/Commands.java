@@ -19,9 +19,10 @@ public class Commands {
     static String usercmd;
     static final Runtime run = Runtime.getRuntime();
     static Process proc;
-    static int exit = 1;
+    static int exit = 0;
     static final Scanner sc = new Scanner(System.in);
     static String name = "shell";
+    static String location = "C:\\";
 
     class Evaluation {
         private static void evalBasic() {
@@ -216,11 +217,11 @@ public class Commands {
     }
 
     public static void help() {
-        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3.1, release date is 3/8/24 and total number of usable commands are 17. Commands in this \"shell\" are - print, time, date, dateTime, eval, run, ascii, colour, shutdown, clear, cmd, rename, getInfo, crDir, rmDir.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t sin 24] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirfiles, which shows the files in the presetted directory, change the directory yourself.\n\nTenth is shver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is  date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.");
+        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3.2. Release date is 3/9/24 and total number of usable commands are 19. Commands in this \"shell\" are - print, time, shver, date, dateTime, eval, run, ascii, colour, shutdown, clear, cmd, rename, getInfo, crDir, rmDir.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t sin 24] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown /r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirfiles, which shows the files in a directory.\n\nTenth is shver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is  date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.\n\nEighteenth is sd, which sets location of dirfiles.");
     }
 
     public static void shellversion() {
-        System.out.println("Version: 1.3.1\nRelease: 3/8/24");
+        System.out.println("Version: 1.3.2\nRelease: 3/9/24");
     }
 
     public static void print() {
@@ -289,6 +290,8 @@ public class Commands {
             proc = run.exec(new String[] { "cmd", "/C", "powershell ise" });
         } else if (usercmd.endsWith("calculator")) {
             proc = run.exec(new String[] { "cmd", "/C", "start", "calc" });
+        } else if (usercmd.endsWith("explorer")) {
+            proc = run.exec(new String[] { "cmd", "/C", "start", "explorer" });
         } else {
             System.err.println("ERROR! Program not recognized, use [edge, cmd, code, arc, cursor, vi, vim, emacs, nano, powershell, powershell ise, calculator]");
         }
@@ -296,23 +299,23 @@ public class Commands {
 
     public static void shutdown() throws IOException {
         if (usercmd.endsWith("i")) {
-            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/i" });
+            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/i", "/t 0" });
         } else if (usercmd.endsWith("l")) {
             proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/l" });
         } else if (usercmd.endsWith("s")) {
-            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/s" });
+            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/s", "/t 0" });
         } else if (usercmd.endsWith("r")) {
-            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/r" });
+            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/r", "/t 0" });
         } else if (usercmd.endsWith("g")) {
-            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/g" });
+            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/g", "/t 0" });
         } else if (usercmd.endsWith("a")) {
             proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/a" });
         } else if (usercmd.endsWith("p")) {
             proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/p" });
         } else if (usercmd.endsWith("h")) {
-            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/h" });
+            proc = run.exec(new String[] { "cmd", "/C", "Start", "shutdown", "/h", "/t 0" });
         } else {
-            System.err.println("ERROR! Shutdown type not recognized, use [/i, /l, /s, /r, /g, /a, /p, /h]");
+            System.err.println("ERROR! Shutdown type not recognized, use [-i, -l, -s, -r, -g, -a, -p, -h]");
         }
     }
 
@@ -326,9 +329,18 @@ public class Commands {
     }
 
     public static void dirfiles() throws IOException {
-        System.out.println(listFiles("C:\\"));
+        System.out.println(listFiles(location));
     }
 
+    public static void setdirectory() {
+        if (usercmd.length() < 3) {
+            System.out.println(location);
+        } else {
+            String[] tokens = usercmd.split("\\s");
+            location = tokens[1];
+        }
+    }
+    
     public static void createDir() throws IOException {
         String[] tokens = usercmd.split("\\s");
         proc = run.exec(new String[] { "cmd", "/C", "mkdir " + tokens[1] });
