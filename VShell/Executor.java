@@ -8,7 +8,7 @@ public class Executor extends Commands {
             System.out.print("[" + name + "]$ ");
             usercmd = sc.nextLine();
             executeCmd(usercmd);
-        } while (exit != 0);
+        } while (exit != 1);
     }
 
     private static void executeCmd(String cmd) throws IOException {
@@ -34,6 +34,8 @@ public class Executor extends Commands {
             createDir();
         } else if (cmd.startsWith("rmDir")) {
             removeDir();
+        } else if (cmd.startsWith("sd")) {
+            setdirectory();
         } else {
             switch (cmd) {
                 case "date":
@@ -52,7 +54,7 @@ public class Executor extends Commands {
                     time();
                     break;
                 case "exit":
-                    exit = 0;
+                    exit = 1;
                     sc.close();
                     break;
                 case "clear":
