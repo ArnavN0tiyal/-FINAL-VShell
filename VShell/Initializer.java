@@ -4,11 +4,11 @@ import java.io.IOException;
 
 public class Initializer extends Processer {
     public static void main(String[] args) throws IOException {
-        vsinit();
+        vshinit();
     }
 
     // To use vshell in a outside context, the initializer is a function, which does cost me more lines
-    public static void vsinit() throws IOException {
+    public static void vshinit() throws IOException {
         art();
         do {
             if (text) {
@@ -85,7 +85,7 @@ public class Initializer extends Processer {
             case "clear", "cls":
             clear();
             break;
-            case "vsver":
+            case "vshver":
             vshellVersion();
             break;
             default:
