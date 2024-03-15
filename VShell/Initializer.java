@@ -14,7 +14,7 @@ public class Initializer extends Processer {
             if (text) {
                 System.out.print("<" + location + "> <" + name + ">$ ");
             } else if (!text) {
-                System.out.println("$ ");
+                System.out.print("$ ");
             }
             usercmd = sc.nextLine();
             process(usercmd);
