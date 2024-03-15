@@ -267,11 +267,9 @@ class Processer {
             switch(tokens[1]) {
                 case "on":
                 text = true;
-                clear();
                 break;
                 case "off":
                 text = false;
-                clear();
                 break;
                 default:
                 System.err.println("ERROR! Use lables like - [on, off]");
