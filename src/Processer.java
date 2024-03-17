@@ -251,7 +251,7 @@ class Processer {
     }
 
     public static void vshellVersion() {
-        System.out.println("Version: 1.3.4\nRelease: 3/15/24");
+        System.out.println("Version: 1.3.5\nRelease: 3/17/24");
     }
 
     public static void print() {
