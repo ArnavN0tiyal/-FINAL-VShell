@@ -95,7 +95,9 @@ public class Initializer extends Processer {
             LegacyShell.init();
             break;
             default:
-            System.err.println("Unknown command");
+            if (!cmd.isEmpty()) {
+                System.err.println("Unknown command");
+            }
             break;
         }   
     }
