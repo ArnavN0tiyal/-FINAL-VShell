@@ -9,20 +9,24 @@ public class Initializer extends Processer {
 
     // To use vshell in a outside context, the initializer is a function, which does cost me more lines
     public static void vshinit() throws IOException {
-        art();
+        if (!legacyShell) {
+            art();
+        }
+        legacyShell = false;
         do {
             if (text) {
                 System.out.print("<" + location + "> <" + name + ">$ ");
-            } else if (!text) {
+            } else {
                 System.out.print("$ ");
             }
             usercmd = sc.nextLine();
             process(usercmd);
+            addtoHistory();
         } while (exit != true);
     }
 
-    private static void process(String cmd) throws IOException {
-        String[] tokens = cmd.split("\\s");
+    private static void process(String input) throws IOException {
+        String[] tokens = input.split("\\s");
         switch (tokens[0]) {
             case "print":
             print();
@@ -90,13 +94,18 @@ public class Initializer extends Processer {
             break;
             case "vshinit":
             vshinit();
+            clearHistory();
             break;
             case "legacyinit":
             LegacyShell.init();
+            exit = true;
+            break;
+            case "history":
+            history();
             break;
             default:
-            if (!cmd.isEmpty()) {
-                System.err.println("Unknown command");
+            if (!input.isEmpty()) {
+                System.err.println("Unknown command");    
             }
             break;
         }   
