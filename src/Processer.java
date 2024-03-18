@@ -26,6 +26,8 @@ class Processer {
     static String name = "shell";
     static String location = "C:\\";
     static boolean text = true;
+    static boolean legacyShell = false;
+    static ArrayList<String> history = new ArrayList<String>();
 
     class Evaluation {
         private static void evalBasic() {
@@ -247,11 +249,11 @@ class Processer {
     }
 
     public static void help() {
-        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3.5. Release date is 3/17/24 and total number of usable commands are 23. Commands in this \"shell\" are - print, time, eval, run, ascii, shutdown, colour, clear or cls, rename, dirFiles, vshver, cmd, getInfo, crDir, rmDir, date, dateTime, sd, text, exit, help, vshinit and legacyinit.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t sin 24] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown -r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirFiles, which shows the files in a directory.\n\nTenth is vshver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.\n\nEighteenth is sd, which sets location of the area where dirFiles will print the contents of the folder.\n\nNintheenth is text, which turns on or off the location and shell name printing like - [text off] or - [text on]\n\nTwentieth is exit, which exits the shell.\n\nTwenty first is help, which you are using right now. It gives help about the shell\n\nTwenty second is vshinit, which initializes the shell\n\nTwenty third is legacyinit, which initializes the legacy shell");
+        System.out.println("About:\n\nWelcome to VShell (Virtual Shell)! This is a custom \"shell\" fully made in java by ArnavN0tiyal. Version of shell is 1.3.6. Release date is 3/18/24 and total number of usable commands are 24. Commands in this \"shell\" are - print, time, eval, run, ascii, shutdown, colour, clear or cls, rename, dirFiles, vshver, cmd, getInfo, crDir, rmDir, date, dateTime, sd, text, exit, help, vshinit, legacyinit and history.\n\nHow to use commands:\n\nFirst is print, which prints to the console. To use this command, first type \"print\" then the string, like - [print hello world].\n\nSecond is time, which *obviously* shows the time.\n\nThird is eval, which evaluates statements like for basic statements - [eval -b 2 + 2], for scientific statements - [eval -s log 10] and for trigonometric statements - [eval -t sin 24] .\n\nFourth is run, which runs programs like - [run cmd].\n\nFifth is ascii, which shows the ascii value of characters like - [ascii I].\n\nSixth is shutdown, which shuts down your computer in certain ways like if I want to restart, do - [shutdown -r] etc, bascially the command prompt shutdown method.\n\nSeventh is colour, which changes the text colour like - [colour red].\n\nEighth is clear, which clears the console.\n\nNinth is dirFiles, which shows the files in a directory.\n\nTenth is vshver, which shows the version of the VShell.\n\nEleventh is cmd, it has three types - [cmd -b], [cmd -c], [cmd -p]. First one runs bash commands (Note - You will need wsl to use this on windows), the second one runs command prompt commands and the third one runs powershell commands.\n\nTwelfth is rename, which renames your shell username like - [rename user].\n\nThirteenth is getInfo, which gives info about your os and about your installation of java like - [getInfo os] or [getInfo java].\n\nFourteenth is crDir, which create a directory like - [crDir VShell_source].\n\nFifteenth is rmDir, which removes a directory like - [rmDir VShell_source].\n\nSixteenth is date, which shows the date.\n\nSeventeenth is dateTime, which shows the date and time.\n\nEighteenth is sd, which sets location of the area where dirFiles will print the contents of the folder.\n\nNintheenth is text, which turns on or off the location and shell name printing like - [text off] or - [text on]\n\nTwentieth is exit, which exits the shell.\n\nTwenty first is help, which you are using right now. It gives help about the shell\n\nTwenty second is vshinit, which initializes the shell\n\nTwenty third is legacyinit, which initializes the legacy shell\n\nTwenty fourth is history, which shows the history of commands you have used");
     }
 
     public static void vshellVersion() {
-        System.out.println("Version: 1.3.5\nRelease: 3/17/24");
+        System.out.println("Version: 1.3.6\nRelease: 3/18/24");
     }
 
     public static void print() {
@@ -504,6 +506,20 @@ class Processer {
         System.out.println("|___//____/_/ /_/\\___/_/_/");  
         System.out.println("\033[0m\nType \"help\" for some context about the shell");
     }
+
+    public static void history() {
+        for (String i : history) {
+            System.out.println(i);
+        }
+    }
+
+    public static void addtoHistory() {
+        history.add(history.size() + ". " + usercmd);
+    }
+
+    public static void clearHistory() {
+        history.clear();
+    }
 }
 
 class LegacyShell {
@@ -531,6 +547,10 @@ class LegacyShell {
     static final String GREEN_BRIGHT = "\033[0;92m";
     static int computer_choice = (int) (1 + Math.random() * 3);
     static int chances;
+
+    public static void main(String[] args) throws IOException {
+        init();
+    }
 
     public static void init() throws IOException {
         System.out.println("Nevertx NeVerox[Version 1.2.2095.21095]\n(n) Nevertx. All rights unreserved.\n");
@@ -695,7 +715,7 @@ class LegacyShell {
         print = 0;
     }
 
-    public static void verify() {
+    public static void verify() throws IOException {
         if (chance >= 1) {
             System.out.println("Files are correctly written to the disk.\n");
         } else if (chance == 1) {
@@ -709,8 +729,10 @@ class LegacyShell {
         System.out.println("The current time is: " + time + "\n");
     }
 
-    public static void exit() {
+    public static void exit() throws IOException {
         exit = 0;
+        VShell.src.Processer.legacyShell = true;
+        VShell.src.Initializer.vshinit();
     }
 
     public static void addition() {
